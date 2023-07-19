@@ -23,13 +23,13 @@ app.use("/uploads/paintings", express.static(__dirname + "/uploads/paintings"));
 app.use("/uploads/blog", express.static(__dirname + "/uploads/blog"));
 app.use(express.static("public"));
 
-app.use(cors({ credentials: true, origin: "https://vitbeta.onrender.com/" }));
-
+app.use(cors({ credentials: true, origin: "*" }));
+/*
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://vitbeta.onrender.com');
   next();
 });
-
+*/
 app.use(express.json());
 app.use(cookieParser());
 
@@ -48,6 +48,7 @@ app.use(
     store: store,
   })
 );
+
 /*
 middleware to get to authorized pages
 const isAuth = (req, res, next) => {
@@ -59,7 +60,7 @@ const isAuth = (req, res, next) => {
 }
 */
 
-// Middleware to verify JWT
+// Middleware to verify JWT so use it!
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -305,12 +306,6 @@ app.post("/getsinglepainting", async (req, res) => {
   try {
     const { id } = req.body;
     const result = await PaintingsModel.findById(id);
-
-    
-    res.setHeader('Access-Control-Allow-Origin', 'https://vitbeta.onrender.com');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); 
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
     res.json(result);
   } catch (error) {
     console.error(error);
