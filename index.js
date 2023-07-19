@@ -302,6 +302,18 @@ app.get("/downloadpaintings", (req, res) => {
 });
 
 app.post("/getsinglepainting", async (req, res) => {
+
+  try {
+    const response = await fetch('https://vitbeta-api.onrender.com/getsinglepainting', {
+      headers: {
+        'Access-Control-Allow-Origin': 'https://vitbeta.onrender.com'
+      }
+    })
+  }catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+
   const { id } = req.body;
   const result = await PaintingsModel.findById(id);
   res.json(result);
