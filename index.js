@@ -24,6 +24,12 @@ app.use("/uploads/blog", express.static(__dirname + "/uploads/blog"));
 app.use(express.static("public"));
 
 app.use(cors({ credentials: true, origin: "https://vitbeta.onrender.com/" }));
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://vitbeta.onrender.com');
+  next();
+});
+
 app.use(express.json());
 app.use(cookieParser());
 
