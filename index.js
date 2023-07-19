@@ -302,21 +302,20 @@ app.get("/downloadpaintings", (req, res) => {
 });
 
 app.post("/getsinglepainting", async (req, res) => {
-
   try {
-    const response = await fetch('https://vitbeta-api.onrender.com/getsinglepainting', {
-      headers: {
-        'Access-Control-Allow-Origin': 'https://vitbeta.onrender.com'
-      }
-    })
-  }catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
+    const { id } = req.body;
+    const result = await PaintingsModel.findById(id);
 
-  const { id } = req.body;
-  const result = await PaintingsModel.findById(id);
-  res.json(result);
+    
+    res.setHeader('Access-Control-Allow-Origin', 'https://vitbeta.onrender.com');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); 
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 app.post("/contact", (req, res) => {
