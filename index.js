@@ -17,7 +17,7 @@ const fs = require("fs");
 const path = require("path");
 const session = require("express-session");
 const MongoDBSession = require("connect-mongodb-session")(session);
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3500;
 
 app.use("/uploads/paintings", express.static(__dirname + "/uploads/paintings"));
 app.use("/uploads/blog", express.static(__dirname + "/uploads/blog"));
@@ -171,7 +171,7 @@ app.post("/forgotpassword", async (req, res) => {
       from: process.env.MYEMAIL,
       to: email,
       subject: "password reset",
-      text: `click on the link below to reser your password:\r\r http://localhost:3000/passwordreset/${result}`,
+      text: `click on the link below to reser your password:\r\r https://vitbeta.onrender.com/passwordreset/${result}`,
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
