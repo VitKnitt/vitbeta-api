@@ -403,7 +403,7 @@ app.post("/postcomment", async (req, res) => {
     token,
     process.env.ACCESS_TOKEN_SECRET,
     async (err, info) => {
-      if (err) return res.status(401).json("unauthorized");
+      if (err) return res.status(401).json(`unauthorized ${err}  ${token}`);
       const name = info.name;
       const result = await Blog.findById(id);
       const numberOfComments = result.comments.map(
