@@ -116,9 +116,7 @@ app.post("/login", async (req, res) => {
       { expiresIn: '240h' },
       (err, token) => {
         if (err) throw err;
-        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true })
-        console.log("Request Cookies:", req.cookies);
-        res.status(200).json({ name, id: userDoc._id});
+        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true }).status(200).json({ name, id: userDoc._id});
       }
     );
   } else {
@@ -399,10 +397,10 @@ app.post("/postcomment", async (req, res) => {
   const newComment = req.body[0].newComment;
   const id = req.body[1].id;
   const { token } = req.cookies;
-
+  console.log("Request Cookies:", req.cookies);
   try {
     // Verify the token and get the user information
-    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const decodedToken = JWT.verify(token, process.env.ACCESS_TOKEN_SECRET);
     const name = decodedToken.name;
 
     const result = await Blog.findById(id);
