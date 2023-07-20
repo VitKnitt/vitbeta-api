@@ -78,7 +78,8 @@ const authenticateToken = (req, res, next) => {
 
 
 app.get("/", (req, res) => {
-  res.json({ message: "jedu" });
+  const cookies = req.cookies;
+  res.json({ cookies, message: "jedu" }); 
 });
 
 app.post("/register", async (req, res) => {
