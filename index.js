@@ -24,12 +24,7 @@ app.use("/uploads/blog", express.static(__dirname + "/uploads/blog"));
 app.use(express.static("public"));
 
 app.use(cors({ credentials: true, origin: "https://vitbeta.onrender.com" }));
-/*
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://vitbeta.onrender.com');
-  next();
-});
-*/
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -121,7 +116,7 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         req.session.isAuth = token
-        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000, domain: "vitbeta.onrender.com", }).status(200).json({ name, id: userDoc._id });
+        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000, domain: "vitbeta.onrender.com", }).status(200).json({ name, id: userDoc._id,cookie: req.cookies });
       }
     );
   } else {
