@@ -113,10 +113,10 @@ app.post("/login", async (req, res) => {
     JWT.sign(
       { name, id: userDoc._id, role: userDoc.role },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '240h' },
+      { },
       (err, token) => {
-        if (err) throw err;
-        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true }).status(200).json({ name, id: userDoc._id});
+        if (err) return res.status(500).json("internal error");
+        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000}).status(200).json({ name, id: userDoc._id});
       }
     );
   } else {
