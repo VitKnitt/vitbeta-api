@@ -30,6 +30,7 @@ app.use(cookieParser());
 
 mongoose.connect(process.env.MONGOURL);
 
+/*
 const store = new MongoDBSession({
   uri: process.env.MONGOURL,
   collection: "mySessions",
@@ -43,7 +44,7 @@ app.use(
     store: store,
   })
 );
-
+*/
 /*
 middleware to get to authorized pages
 const isAuth = (req, res, next) => {
@@ -115,7 +116,6 @@ app.post("/login", async (req, res) => {
       { expiresIn: '240h' },
       (err, token) => {
         if (err) throw err;
-        req.session.isAuth = token
         res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000, domain: "vitbeta.onrender.com", })
         console.log("Request Cookies:", req.cookies);
         res.status(200).json({ name, id: userDoc._id});
