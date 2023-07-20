@@ -116,7 +116,7 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         req.session.isAuth = token
-        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000, domain: "vitbeta.onrender.com", }).status(200).json({ name, id: userDoc._id,cookie: req.cookies });
+        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000, domain: "vitbeta.onrender.com", }).status(200).json({ name, id: userDoc._id});
       }
     );
   } else {
@@ -391,6 +391,32 @@ app.post("/getsinglepost", async (req, res) => {
 });
 
 app.post("/postcomment", async (req, res) => {
+
+  const newComment = req.body[0].newComment;
+  const id = req.body[1].id;
+  const { token } = req.cookies;
+
+  try {
+    // Verify the token and get the user information
+    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const name = decodedToken.name;
+
+    const result = await Blog.findById(id);
+    const numberOfComments = result.comments.filter((comment) => comment.name === name);
+    const maxNumber = numberOfComments.length;
+
+    if (maxNumber >= 5) {
+      return res.status(403).json("limit exceeded");
+    }
+
+    result.comments.push({ name, comment: newComment });
+    await result.save();
+
+    res.status(201).json("comment saved");
+  } catch (err) {
+    return res.status(401).json(`unauthorized ${err}  ${token}`);
+  }
+  /*
   const newComment = req.body[0].newComment;
   const id = req.body[1].id;
   const { token } = req.cookies;
@@ -411,7 +437,7 @@ app.post("/postcomment", async (req, res) => {
       await result.save();
       res.status(201).json("comment saved");
     }
-  );
+  );*/
 });
 
 app.listen(PORT, () => {
