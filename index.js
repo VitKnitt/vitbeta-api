@@ -216,9 +216,11 @@ app.post("/passwordreset", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
+  /*
   req.session.destroy((err) => {
     if(err) console.log(err)
   })
+  */
   res.cookie("token", "").json("logout success")
  // res.json("logout success");
 });
