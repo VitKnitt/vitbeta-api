@@ -121,7 +121,7 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         req.session.isAuth = token
-        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000 }).status(200).json({ name, id: userDoc._id });
+        res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000, domain: "vitbeta.onrender.com", }).status(200).json({ name, id: userDoc._id });
       }
     );
   } else {
