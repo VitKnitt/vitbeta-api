@@ -194,7 +194,11 @@ app.post("/forgotpassword", async (req, res) => {
   }
 });
 
+app.get("/passwordreset/:id/:token" , async (req,res) => {
+  res.json("jedeme")
+})
 
+/*
 app.post("/passwordreset/:id/:token", async (req, res) => {
   const { newPassword} = req.body;
   const { id, token} = req.params;
@@ -216,7 +220,7 @@ app.post("/passwordreset/:id/:token", async (req, res) => {
     }
   );
 });
-
+*/
 app.post("/logout", (req, res) => {
   /*
   req.session.destroy((err) => {
