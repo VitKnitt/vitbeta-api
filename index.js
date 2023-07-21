@@ -194,7 +194,7 @@ app.post("/forgotpassword", async (req, res) => {
   }
 });
 
-app.post("/passwordreset", async (req, res) => {
+app.post("/passwordreset/*", async (req, res) => {
   const { newPassword, id} = req.body;
   
   const verify = JWT.verify(
