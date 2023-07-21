@@ -455,7 +455,7 @@ app.post("/postcomment", async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.js"))
+  res.json("nothing")
 });
 
 app.listen(PORT, () => {
