@@ -194,7 +194,7 @@ app.post("/forgotpassword", async (req, res) => {
   }
 });
 
-app.get("/passwordreset/:id/:token" , async (req,res) => {
+app.get(`/passwordreset/${id}/${token}` , async (req,res) => {
   res.json("jedeme")
 })
 
