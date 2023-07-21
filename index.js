@@ -194,6 +194,10 @@ app.post("/forgotpassword", async (req, res) => {
   }
 });
 
+app.get('passwordreset/:id/:token', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'PasswordReset.js'));
+});
+
 app.post("/passwordreset/:id/:token", async (req, res) => {
   const { newPassword} = req.body;
   const { id, token} = req.params;
