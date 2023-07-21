@@ -116,7 +116,7 @@ app.post("/login", async (req, res) => {
       { },
       (err, token) => {
         if (err) return res.status(500).json("internal error");
-        localStorage.setItem("token",token)
+       
         console.log(token)
         res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000}).status(200).json({ name, id: userDoc._id});
       }
@@ -128,7 +128,7 @@ app.post("/login", async (req, res) => {
 
 app.post('/islloged',(req,res) => {
 //const { token } = req.cookies;
-const token = localStorage.getItem("token")
+
 if(!token) return res.status(401).json("unauthorized")
   const userDoc = JWT.verify(
     token,
@@ -196,7 +196,7 @@ app.post("/forgotpassword", async (req, res) => {
 
 app.post("/passwordreset", async (req, res) => {
   const { newPassword, id} = req.body;
-  const token = localStorage.getItem("token")
+  
   const verify = JWT.verify(
     token,
     process.env.ACCESS_TOKEN_SECRET,
@@ -223,13 +223,13 @@ app.post("/logout", (req, res) => {
   })
   */
   res.cookie("token", "").json("logout success")
-  localStorage.clear()
+  
  // res.json("logout success");
 });
 
 app.post("/checkrole", (req, res) => {
   //const { token } = req.cookies;
-  const token =localStorage.getItem("token")
+  
   const userDoc = JWT.verify(
     token,
     process.env.ACCESS_TOKEN_SECRET,
@@ -256,7 +256,7 @@ app.post("/postpainting", uploadPaintings.array("file"), async (req, res) => {
   });
 
   //const { token } = req.cookies;
-  const token =localStorage.getItem("token")
+  
   JWT.verify(token, process.env.ACCESS_TOKEN_SECRET, {}, async (err, info) => {
     if (err) throw err;
     const { title, body, year, serie, additionalInfo } = req.body;
@@ -286,7 +286,7 @@ app.get("/getpaintings", async (req, res) => {
 
 app.get("/downloadpaintings", (req, res) => {
   //const { token } = req.cookies;
-  const token =localStorage.getItem("token")
+  
   const verify = JWT.verify(
     token,
     process.env.ACCESS_TOKEN_SECRET,
@@ -372,7 +372,7 @@ app.post("/postblog", uploadBlog.single("file"), async (req, res) => {
   fs.renameSync(path, newPath);
 
   //const { token } = req.cookies;
-  const token =localStorage.getItem("token")
+  
   JWT.verify(token, process.env.ACCESS_TOKEN_SECRET, {}, async (err, info) => {
     if (err) return res.status(500).json("internal error");
     const { title, text } = req.body;
@@ -404,7 +404,7 @@ app.post("/postcomment", async (req, res) => {
   const newComment = req.body[0].newComment;
   const id = req.body[1].id;
   //const { token } = req.cookies;
-  const token =localStorage.getItem("token")
+  
   console.log("Request Cookies:", req.cookies);
   try {
     // Verify the token and get the user information
