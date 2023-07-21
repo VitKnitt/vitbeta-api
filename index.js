@@ -455,7 +455,7 @@ app.post("/postcomment", async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.redirect('/')
+  res.redirect('https://vitbeta.onrender.com/')
 });
 
 app.listen(PORT, () => {
