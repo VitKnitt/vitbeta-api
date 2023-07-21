@@ -454,6 +454,10 @@ app.post("/postcomment", async (req, res) => {
   );*/
 });
 
+app.get('*', (req, res) => {
+  res.redirect('/')
+});
+
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
 });
