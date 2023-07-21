@@ -117,7 +117,7 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) return res.status(500).json("internal error");
         localStorage.setItem("token",token)
-        console.log(localStorage.getItem("token"))
+        console.log(token)
         res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000}).status(200).json({ name, id: userDoc._id});
       }
     );
