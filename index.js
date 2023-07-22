@@ -180,7 +180,7 @@ app.post("/forgotpassword", async (req, res) => {
       from: process.env.MYEMAIL,
       to: email,
       subject: "password reset",
-      text: `click on the link below to reser your password:\r\r https://vitbeta.onrender.com/passwordreset/${result}`,
+      text: `click on the link below to reser your password:\r\r https://vitbeta.onrender.com/#/passwordreset/${result}`,
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
