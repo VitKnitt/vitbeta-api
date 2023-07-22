@@ -22,6 +22,7 @@ const PORT = process.env.PORT || 3500;
 app.use("/uploads/paintings", express.static(__dirname + "/uploads/paintings"));
 app.use("/uploads/blog", express.static(__dirname + "/uploads/blog"));
 app.use(express.static("public"));
+/*app.use(express.static(path.join(__dirname, 'client/public')));*/
 
 app.use(cors({ credentials: true, origin: "https://vitbeta.onrender.com" }));
 
@@ -453,6 +454,7 @@ app.post("/postcomment", async (req, res) => {
     }
   );*/
 });
+
 
 app.get('*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/public/build/index.html'));
