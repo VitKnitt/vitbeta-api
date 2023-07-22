@@ -455,15 +455,12 @@ app.post("/postcomment", async (req, res) => {
   );*/
 });
 
-/*
-app.get('*', (req,res) =>{
-  res.sendFile(path.join(__dirname+'/public/build/index.html'));
-});
-*/
 
-app.get('*', (req, res) => {
-  res.redirect('https://vitbeta.onrender.com' + req.originalUrl);
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/public/index.html'));
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
