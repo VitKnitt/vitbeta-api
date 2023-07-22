@@ -455,9 +455,14 @@ app.post("/postcomment", async (req, res) => {
   );*/
 });
 
-
+/*
 app.get('*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/public/build/index.html'));
+});
+*/
+
+app.get('*', (req, res) => {
+  res.redirect('https://vitbeta.onrender.com' + req.originalUrl);
 });
 
 app.listen(PORT, () => {
