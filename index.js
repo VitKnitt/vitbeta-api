@@ -123,6 +123,11 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
+app.get("/getblogposts", async (req, res) => {
+  const result = await Blog.find();
+  res.json(result);
+});
+
 app.use('/',indexPage)
 
 app.use('/register',register)
@@ -152,6 +157,8 @@ app.use('/contact',contact)
 app.use('/postblog',uploadBlog.single("file"),postBlog)
 
 app.use('/getblogposts',blogposts)
+
+
 
 app.use('/getsinglepost',singlePost)
 
