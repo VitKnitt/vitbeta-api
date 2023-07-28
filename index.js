@@ -139,17 +139,7 @@ app.use('/checkrole',checkRole)
 
 app.use('/postpainting',uploadPaintings.array("file"),postPainting)
 
-//app.use('/getpaintings',getPaintings)
-
-app.get("/getpaintings", async (req, res) => {
-  const result = await PaintingsModel.find();
-  if (result) {
-    res.status(200).json(result);
-  } else {
-    res.status(500).json({ message: "nic tam neni" });
-  }
-});
-
+app.use('/getpaintings',getPaintings)
 
 app.use('/downloadpaintings',downloadPaintings)
 
