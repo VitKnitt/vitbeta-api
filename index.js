@@ -48,7 +48,7 @@ app.use(express.static("public"));
 const allowedPages = ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com','*']
 
 
-app.use(cors({credentials: true, origin: '*'}))
+app.use(cors({credentials: true, origin: 'https://vitbeta.onrender.com'}))
 /*
 app.use(cors({ 
   origin: (origin, callback) => {
