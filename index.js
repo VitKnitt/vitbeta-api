@@ -49,7 +49,7 @@ app.use(express.static("public"));
 
 
 
-app.use(cors({ origin: ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'], credentials: true }))
+//app.use(cors({ origin: ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'], credentials: true }))
 //app.use(cors({ origin: 'https://vitbeta.onrender.com', credentials: true }))
 
 
@@ -78,6 +78,27 @@ app.use(cors({
   },  
   credentials: true }));
 */
+
+const allowedPages = ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests without an origin (like mobile apps or Postman)
+    if (!origin) return callback(null, true);
+
+    const isAllowedPages = allowedPages.includes(origin);
+    const allowPage = isAllowedPages ? origin : false;
+    callback(null, allowPage);
+  },
+  credentials: true
+}));
+
+// Define your routes and other middleware here
+
+// Handle preflight requests (OPTIONS) for all routes
+app.options('*', cors());
+
+
 app.use(express.json());
 app.use(cookieParser());
 
