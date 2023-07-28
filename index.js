@@ -78,7 +78,7 @@ app.use(cors({
   },  
   credentials: true }));
 */
-
+/*
 const allowedPages = ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'];
 
 app.use(cors({
@@ -97,7 +97,9 @@ app.use(cors({
 
 // Handle preflight requests (OPTIONS) for all routes
 app.options('*', cors());
+*/
 
+app.use(cors({origin: '*'}))
 
 app.use(express.json());
 app.use(cookieParser());
