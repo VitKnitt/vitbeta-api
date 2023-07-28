@@ -53,9 +53,9 @@ app.use(express.static("public"));
 //app.use(cors({ origin: 'https://vitbeta.onrender.com', credentials: true }))
 
 
-/*
+
 app.use(function(req, res, next) {
-  // res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "*");
   const allowedOrigins = ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
@@ -66,7 +66,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
   next();
 });
-*/
+
 
 
 /*
@@ -99,7 +99,7 @@ app.use(cors({
 app.options('*', cors());
 */
 
-app.use(cors({origin: '*'}))
+
 
 app.use(express.json());
 app.use(cookieParser());
