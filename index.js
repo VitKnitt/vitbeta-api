@@ -49,8 +49,8 @@ app.use(express.static("public"));
 
 
 
-//app.use(cors({ origin: ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'], credentials: true }))
-app.use(cors({ origin: 'https://vitbeta.onrender.com', credentials: true }))
+app.use(cors({ origin: ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'], credentials: true }))
+//app.use(cors({ origin: 'https://vitbeta.onrender.com', credentials: true }))
 
 
 /*
