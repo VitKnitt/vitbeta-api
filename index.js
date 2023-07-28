@@ -38,7 +38,7 @@ const blogposts = require('./routes/blog/blogPosts')
 const singlePost = require('./routes/blog/singlePost')
 const postComment = require('./routes/blog/postComment')
 
-app.use(cors({ origin: ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com', 'https://vitbeta-api.onrender.com'], credentials: true }))
+
 app.use("/uploads/paintings", express.static(__dirname + "/uploads/paintings"));
 app.use("/uploads/blog", express.static(__dirname + "/uploads/blog"));
 app.use(express.static("public"));
@@ -50,6 +50,7 @@ app.use(express.static("public"));
 
 
 //app.use(cors({ origin: ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'], credentials: true }))
+app.use(cors({ origin: 'https://vitbeta.onrender.com', credentials: true }))
 
 
 /*
