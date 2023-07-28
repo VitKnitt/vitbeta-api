@@ -47,6 +47,9 @@ app.use(express.static("public"));
 
 const allowedPages = ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com','*']
 
+
+app.use(cors({credentials: true, origin: '*'}))
+/*
 app.use(cors({ 
   origin: (origin, callback) => {
     const isAllowedPages = allowedPages.includes(origin);
@@ -54,7 +57,7 @@ app.use(cors({
     callback(null, allowPage);
   },  
   credentials: true }));
-
+*/
 app.use(express.json());
 app.use(cookieParser());
 
