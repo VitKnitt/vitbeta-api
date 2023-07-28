@@ -50,7 +50,7 @@ app.use(express.static("public"));
 
 
 //app.use(cors({ origin: ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'], credentials: true }))
-app.use(cors({ origin: 'https://vitbeta.onrender.com', credentials: true }))
+//app.use(cors({ origin: 'https://vitbeta.onrender.com', credentials: true }))
 
 
 /*
@@ -78,7 +78,7 @@ app.use(cors({
   },  
   credentials: true }));
 */
-/*
+
 const allowedPages = ['http://localhost:3000', 'https://vitbeta.onrender.com', 'https://www.edgetale.com'];
 
 app.use(cors({
@@ -97,7 +97,7 @@ app.use(cors({
 
 // Handle preflight requests (OPTIONS) for all routes
 app.options('*', cors());
-*/
+
 
 
 
@@ -123,12 +123,11 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-app.get("/getblogposts", async (req, res) => {
-  const result = await Blog.find();
-  res.json(result);
-});
+//--------general--------//
 
 app.use('/',indexPage)
+
+//--------user actions--------//
 
 app.use('/register',register)
 
@@ -144,6 +143,8 @@ app.use('/logout',logout)
 
 app.use('/checkrole',checkRole)
 
+//--------paintings--------//
+
 app.use('/postpainting',uploadPaintings.array("file"),postPainting)
 
 app.use('/getpaintings',getPaintings)
@@ -152,13 +153,15 @@ app.use('/downloadpaintings',downloadPaintings)
 
 app.use('/getsinglepainting',singlePainting)
 
+//--------contact--------//
+
 app.use('/contact',contact)
+
+//--------blog--------//
 
 app.use('/postblog',uploadBlog.single("file"),postBlog)
 
 app.use('/getblogposts',blogposts)
-
-
 
 app.use('/getsinglepost',singlePost)
 
