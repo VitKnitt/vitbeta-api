@@ -7,9 +7,11 @@ const Blog = require('../../models/Blog');
 router.post("/", async (req, res) => {
     const newComment = req.body[0].newComment;
     const id = req.body[1].id;
-    const { token } = req.cookies;
+    const token  = req.body[2]
     //const token = process.env.TOKEN
-    console.log("Request Cookies:", req.cookies);
+    console.log(newComment + " komentar");
+    console.log(id + "id");
+    console.log(token + token);
     try {
       // Verify the token and get the user information
       const decodedToken = JWT.verify(token, process.env.ACCESS_TOKEN_SECRET);
