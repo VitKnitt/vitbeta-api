@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
         { },
         (err, token) => {
           if (err) return res.status(500).json("internal error");
-         
+         console.log(token + " jwt in back-end")
           //res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000}).status(200).json({ name, id: userDoc._id});
           res.status(200).json({token,name,id: userDoc._id})
         }
