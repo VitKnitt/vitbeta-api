@@ -4,8 +4,8 @@ const JWT = require("jsonwebtoken");
 const path = require("path");
 
 router.get("/", (req, res) => {
-    //const { token } = req.cookies;
-    const token = process.env.TOKEN
+    const { token } = req.cookies;
+    //const token = process.env.TOKEN
     const verify = JWT.verify(
       token,
       process.env.ACCESS_TOKEN_SECRET,

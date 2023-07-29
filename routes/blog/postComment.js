@@ -7,8 +7,8 @@ const Blog = require('../../models/Blog');
 router.post("/", async (req, res) => {
     const newComment = req.body[0].newComment;
     const id = req.body[1].id;
-    //const { token } = req.cookies;
-    const token = process.env.TOKEN
+    const { token } = req.cookies;
+    //const token = process.env.TOKEN
     console.log("Request Cookies:", req.cookies);
     try {
       // Verify the token and get the user information

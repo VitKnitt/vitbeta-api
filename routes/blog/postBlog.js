@@ -11,8 +11,8 @@ router.post("/", async (req, res) => {
     const newPath = path + "." + ext;
     fs.renameSync(path, newPath);
   
-    //const { token } = req.cookies;
-    const token = process.env.TOKEN
+    const { token } = req.cookies;
+    //const token = process.env.TOKEN
     JWT.verify(token, process.env.ACCESS_TOKEN_SECRET, {}, async (err, info) => {
       if (err) return res.status(500).json("internal error");
       const { title, text } = req.body;

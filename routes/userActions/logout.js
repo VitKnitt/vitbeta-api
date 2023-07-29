@@ -8,7 +8,7 @@ router.post("/", (req, res) => {
     })
     */
     res.cookie("token", "").json("logout success")
-    const token = null
+    //const token = null
    // res.json("logout success");
   });
 

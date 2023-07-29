@@ -17,8 +17,8 @@ router.post("/", async (req, res) => {
       Items.push(path + "." + ext);
     });
   
-    //const { token } = req.cookies;
-    const token = process.env.TOKEN
+    const { token } = req.cookies;
+    //const token = process.env.TOKEN
     JWT.verify(token, process.env.ACCESS_TOKEN_SECRET, {}, async (err, info) => {
       if (err) throw err;
       const { title, body, year, serie, additionalInfo } = req.body;
