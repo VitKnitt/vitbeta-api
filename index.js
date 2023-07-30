@@ -139,7 +139,7 @@ app.use('/forgotpassword',forgotPassword)
 
 app.use('/passwordreset/:id/:token',passwordReset)
 
-app.use('/logout',logout)
+//app.use('/logout',logout)
 
 app.use('/checkrole',checkRole)
 

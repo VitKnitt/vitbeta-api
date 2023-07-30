@@ -1,14 +1,14 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 const PaintingsModel = require("../../models/PaintingsModel");
 
 router.get("/", async (req, res) => {
-    const result = await PaintingsModel.find();
-    if (result) {
-      res.status(200).json(result);
-    } else {
-      res.status(500).json({ message: "nic tam neni" });
-    }
-  });
+  try{
+  const result = await PaintingsModel.find(); 
+    res.status(200).json(result);
+  }   catch(err){
+    res.status(500).json({ message: "internal error" });
+  }
+});
 
-module.exports = router
+module.exports = router;

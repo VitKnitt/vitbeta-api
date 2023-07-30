@@ -6,6 +6,7 @@ const PaintingsModel = require("../../models/PaintingsModel");
 
 
 router.post("/", async (req, res) => {
+  try{
     const Items = [];
   
     req.files.map((file) => {
@@ -17,8 +18,7 @@ router.post("/", async (req, res) => {
       Items.push(path + "." + ext);
     });
   
-    //const { token } = req.cookies;
-    //const token = process.env.TOKEN
+    
     const { token } = req.body
     JWT.verify(token, process.env.ACCESS_TOKEN_SECRET, {}, async (err, info) => {
       if (err) throw err;
@@ -36,6 +36,9 @@ router.post("/", async (req, res) => {
       });
       res.json(postPics);
     });
+  }catch(err){
+    res.status(500).json('internal error')
+  }
   });
 
 

@@ -3,8 +3,12 @@ const router = express.Router()
 const Blog = require('../../models/Blog');
 
 router.get("/", async (req, res) => {
+  try{
     const result = await Blog.find();
-    res.json(result);
+    res.status(201).json(result);
+  }catch (error){
+    res.json(error)
+  }
   });
 
 module.exports = router

@@ -4,8 +4,7 @@ const JWT = require("jsonwebtoken");
 
 
 router.post("/", (req, res) => {
-    //const { token } = req.cookies;
-    //const token = process.env.TOKEN
+  try{
     const { token } = req.body
     const userDoc = JWT.verify(
       token,
@@ -18,6 +17,9 @@ router.post("/", (req, res) => {
         return res.status(403).json("forbidden");
       }
     );
+  } catch(err){
+    res.status(500).json('internal error')
+  }
   });
 
 module.exports = router

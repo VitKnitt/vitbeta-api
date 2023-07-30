@@ -6,6 +6,7 @@ const JWT = require("jsonwebtoken");
 
 
 router.post("/", async (req, res) => {
+  try{
     const { name, password } = req.body;
     const userDoc = await User.findOne({ name });
   
@@ -19,14 +20,16 @@ router.post("/", async (req, res) => {
         process.env.ACCESS_TOKEN_SECRET,
         { },
         (err, token) => {
-          if (err) return res.status(500).json("internal error");         
-          //res.cookie("token", token, { maxAge: 10 * 24 * 60 * 60 * 1000}).status(200).json({ name, id: userDoc._id});
+          if (err) return res.status(500).json("internal error");
           res.status(200).json({token,name,id: userDoc._id})
         }
       );
     } else {
       res.status(400).json("wrong credentials");
     }
+  }catch(err){
+    res.status(500).json("internal error");  
+  }
   });
 
 module.exports = router
