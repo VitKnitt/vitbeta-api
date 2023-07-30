@@ -1,11 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 const JWT = require("jsonwebtoken");
 
-
 router.post("/", (req, res) => {
-  try{
-    const { token } = req.body
+  try {
+    const { token } = req.body;
     const userDoc = JWT.verify(
       token,
       process.env.ACCESS_TOKEN_SECRET,
@@ -17,9 +16,9 @@ router.post("/", (req, res) => {
         return res.status(403).json("forbidden");
       }
     );
-  } catch(err){
-    res.status(500).json('internal error')
+  } catch (err) {
+    res.status(500).json("internal error");
   }
-  });
+});
 
-module.exports = router
+module.exports = router;
