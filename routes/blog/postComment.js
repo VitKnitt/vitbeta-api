@@ -8,10 +8,7 @@ router.post("/", async (req, res) => {
     const newComment = req.body[0].newComment;
     const id = req.body[1].id;
     const token  = req.body[2]
-    //const token = process.env.TOKEN
-    console.log(newComment + " komentar");
-    console.log(id + "id");
-    console.log(token + token);
+    //const token = process.env.TOKEN   
     try {
       // Verify the token and get the user information
       const decodedToken = JWT.verify(token, process.env.ACCESS_TOKEN_SECRET);

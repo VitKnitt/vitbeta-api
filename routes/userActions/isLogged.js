@@ -3,8 +3,10 @@ const router = express.Router()
 const JWT = require("jsonwebtoken");
 
 router.post('/',(req,res) => {
-    const { token } = req.cookies;
+    //const { token } = req.cookies;
     //const token = process.env.TOKEN
+    const  token  = req.body.token
+    
     if(!token) return res.status(401).json("unauthorized")
       const userDoc = JWT.verify(
         token,

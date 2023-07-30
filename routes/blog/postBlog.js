@@ -11,8 +11,9 @@ router.post("/", async (req, res) => {
     const newPath = path + "." + ext;
     fs.renameSync(path, newPath);
   
-    const { token } = req.cookies;
+    //const { token } = req.cookies;
     //const token = process.env.TOKEN
+    const { token } = req.body
     JWT.verify(token, process.env.ACCESS_TOKEN_SECRET, {}, async (err, info) => {
       if (err) return res.status(500).json("internal error");
       const { title, text } = req.body;
@@ -22,7 +23,7 @@ router.post("/", async (req, res) => {
         picture: newPath,
         author: info.id,
       });
-      res.json(postBlog.comments);
+      res.status(200).json(postBlog.comments);
     });
   });
 

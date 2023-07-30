@@ -5,8 +5,8 @@ const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
-    const { newPassword} = req.body;
-    const { id, token} = req.params;
+    const { newPassword, id, token} = req.body;
+    //const { id, token} = req.params;
     const verify = JWT.verify(
       token,
       process.env.ACCESS_TOKEN_SECRET,
