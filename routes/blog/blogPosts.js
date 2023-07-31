@@ -5,7 +5,7 @@ const Blog = require('../../models/Blog');
 router.get("/", async (req, res) => {
   try{
     const result = await Blog.find();
-    res.status(201).json(result);
+    res.status(200).json(result);
   }catch (error){
     res.json(error)
   }
