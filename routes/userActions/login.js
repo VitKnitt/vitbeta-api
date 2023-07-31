@@ -9,19 +9,18 @@ router.post("/", async (req, res) => {
   try{
     const { name, password } = req.body;
     const userDoc = await User.findOne({ name });
-  
     if (!userDoc) return res.status(404).json("user doesnt exist");
   
     const legitPassword = bcrypt.compareSync(password, userDoc.password);
-  
+    
     if (legitPassword) {
       JWT.sign(
-        { name, id: userDoc._id, role: userDoc.role },
+        { name, id: userDoc._id, role : userDoc.role },
         process.env.ACCESS_TOKEN_SECRET,
         { },
         (err, token) => {
           if (err) return res.status(500).json("internal error");
-          res.status(200).json({token,name,id: userDoc._id})
+          res.status(200).json({token,name,id: userDoc._id, role: userDoc.role})
         }
       );
     } else {
