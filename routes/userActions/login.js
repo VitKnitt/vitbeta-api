@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
       JWT.sign(
         { name, id: userDoc._id, role : userDoc.role },
         process.env.ACCESS_TOKEN_SECRET,
-        { },
+        { expiresIn: '30d' },
         (err, token) => {
           if (err) return res.status(500).json("internal error");
           res.status(200).json({token,name,id: userDoc._id, role: userDoc.role})
